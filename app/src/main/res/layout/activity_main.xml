@@ -1,0 +1,516 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+<androidx.core.widget.NestedScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <View
+        android:id="@+id/green_circle"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="300dp"
+        android:layout_marginBottom="830dp"
+        android:background="@drawable/circle_green"
+        android:elevation="35dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        />
+
+    <View
+        android:id="@+id/houseSign"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="300dp"
+        android:layout_marginBottom="830dp"
+        android:background="@drawable/icon_home_white_filled"
+        android:elevation="35dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        />
+
+    <TextView
+        android:id="@+id/my_address_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="240dp"
+        android:layout_marginBottom="850dp"
+        android:fontFamily="@font/kanit"
+        android:text="My Home"
+        android:textSize="10sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/my_address"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="70dp"
+        android:layout_marginTop="45dp"
+        android:layout_marginBottom="850dp"
+        android:fontFamily="@font/kanit"
+        android:text="my address"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.github.mikephil.charting.charts.LineChart
+        android:id="@+id/chart"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="25dp"
+        android:layout_marginBottom="550dp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.github.mikephil.charting.charts.LineChart
+        android:id="@+id/chart2"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="25dp"
+        android:layout_marginBottom="550dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.button.MaterialButtonToggleGroup
+        android:id="@+id/toggleGroup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:checkedButton="@id/btn_energy_used"
+        app:singleSelection="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="50dp"
+        android:layout_marginBottom="350dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginEnd="25dp"
+        >
+
+        <Button
+            android:id="@+id/btn_energy_used"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Energy Used"
+            />
+
+        <Button
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:id="@+id/btn_price"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="PRICE"
+            />
+
+    </com.google.android.material.button.MaterialButtonToggleGroup>
+
+
+    <View
+        android:id="@+id/bg_block1"
+        android:layout_width="154dp"
+        android:layout_height="170dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="470dp"
+        android:layout_marginEnd="197dp"
+        android:layout_marginBottom="172dp"
+        android:background="@drawable/bg_block_square"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/bg_block2"
+        android:layout_width="154dp"
+        android:layout_height="170dp"
+        android:layout_marginStart="198dp"
+        android:layout_marginTop="470dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="172dp"
+        android:background="@drawable/bg_block_square"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/todayPriceText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="250dp"
+        android:layout_marginEnd="230dp"
+        android:layout_marginBottom="470dp"
+        android:fontFamily="@font/kanit"
+        android:text="Today's Usage"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/todayUsageLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <View
+            android:id="@+id/bg_block_horizontal1"
+            android:layout_width="327dp"
+            android:layout_height="72dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="344dp"
+            android:layout_marginEnd="24dp"
+            android:layout_marginBottom="446dp"
+            android:background="@drawable/bg_block_horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/today_current_price_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="50dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="213dp"
+            android:layout_marginBottom="20dp"
+            android:fontFamily="@font/kanit"
+            android:text="123 kWh         $ 2.75"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/bg_block_horizontal1"
+            app:layout_constraintEnd_toEndOf="@+id/bg_block_horizontal1"
+            app:layout_constraintHorizontal_bias="0.114"
+            app:layout_constraintStart_toStartOf="@+id/bg_block_horizontal1"
+            app:layout_constraintTop_toTopOf="@+id/bg_block_horizontal1"
+            app:layout_constraintVertical_bias="0.509" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="350dp"
+        android:layout_marginEnd="164dp"
+        android:layout_marginBottom="270dp"
+        android:fontFamily="@font/kanit"
+        android:text="This Month's Summary"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/blue_circle"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="86dp"
+        android:layout_marginBottom="98dp"
+        android:background="@drawable/circle_blue"
+        android:elevation="35dp"
+        app:layout_constraintBottom_toBottomOf="@id/bg_block1"
+        app:layout_constraintEnd_toEndOf="@id/bg_block1"
+        app:layout_constraintStart_toStartOf="@id/bg_block1"
+        app:layout_constraintTop_toTopOf="@id/bg_block1"
+        />
+
+    <View
+        android:id="@+id/powerSign"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="86dp"
+        android:layout_marginBottom="98dp"
+        android:background="@drawable/icon_power"
+        android:elevation="35dp"
+        app:layout_constraintBottom_toBottomOf="@id/bg_block1"
+        app:layout_constraintEnd_toEndOf="@id/bg_block1"
+        app:layout_constraintStart_toStartOf="@id/bg_block1"
+        app:layout_constraintTop_toTopOf="@id/bg_block1"
+        />
+
+    <TextView
+        android:id="@+id/energyUsedText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="88dp"
+        android:layout_marginEnd="57dp"
+        android:layout_marginBottom="62dp"
+        android:fontFamily="@font/kanit"
+        android:text="Energy Used"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="@id/bg_block1"
+        app:layout_constraintEnd_toEndOf="@id/bg_block1"
+        app:layout_constraintStart_toStartOf="@id/bg_block1"
+        app:layout_constraintTop_toTopOf="@id/bg_block1" />
+
+    <TextView
+        android:id="@+id/energyUsedValueText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="112dp"
+        android:layout_marginEnd="45dp"
+        android:layout_marginBottom="24dp"
+        android:fontFamily="@font/kanit"
+        android:text="123 kWh"
+        android:textStyle="bold"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="@id/bg_block1"
+        app:layout_constraintEnd_toEndOf="@id/bg_block1"
+        app:layout_constraintStart_toStartOf="@id/bg_block1"
+        app:layout_constraintTop_toTopOf="@id/bg_block1" />
+
+
+    <View
+        android:id="@+id/yellow_circle"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="85dp"
+        android:layout_marginBottom="98dp"
+        android:background="@drawable/circle_yellow"
+        android:elevation="30dp"
+        app:layout_constraintBottom_toBottomOf="@id/bg_block2"
+        app:layout_constraintEnd_toEndOf="@id/bg_block2"
+        app:layout_constraintStart_toStartOf="@id/bg_block2"
+        app:layout_constraintTop_toTopOf="@id/bg_block2" />
+
+    <View
+        android:id="@+id/dollarSign"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="85dp"
+        android:layout_marginBottom="98dp"
+        android:background="@drawable/icon_money"
+        android:elevation="30dp"
+        app:layout_constraintBottom_toBottomOf="@id/bg_block2"
+        app:layout_constraintEnd_toEndOf="@id/bg_block2"
+        app:layout_constraintStart_toStartOf="@id/bg_block2"
+        app:layout_constraintTop_toTopOf="@id/bg_block2" />
+
+    <TextView
+        android:id="@+id/currentPriceText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="88dp"
+        android:layout_marginEnd="53dp"
+        android:layout_marginBottom="62dp"
+        android:fontFamily="@font/kanit"
+        android:text="Current Price"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="@id/bg_block2"
+        app:layout_constraintEnd_toEndOf="@id/bg_block2"
+        app:layout_constraintStart_toStartOf="@id/bg_block2"
+        app:layout_constraintTop_toTopOf="@id/bg_block2" />
+
+    <TextView
+        android:id="@+id/currentPriceValueText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="112dp"
+        android:layout_marginEnd="68dp"
+        android:layout_marginBottom="24dp"
+        android:fontFamily="@font/kanit"
+        android:text="$ 12.34"
+        android:textStyle="bold"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="@id/bg_block2"
+        app:layout_constraintEnd_toEndOf="@id/bg_block2"
+        app:layout_constraintStart_toStartOf="@id/bg_block2"
+        app:layout_constraintTop_toTopOf="@id/bg_block2" />
+
+
+    <TextView
+        android:id="@+id/textview_result"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</androidx.core.widget.NestedScrollView>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+
+    <View
+        android:id="@+id/navigationBar"
+        android:layout_width="375dp"
+        android:layout_height="88dp"
+        android:layout_marginTop="724dp"
+        android:background="#EDEDED"
+        android:elevation="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+
+
+        />
+
+    <View
+        android:id="@+id/historyIcon"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="104dp"
+        android:layout_marginTop="18dp"
+        android:layout_marginEnd="247dp"
+        android:layout_marginBottom="46dp"
+        android:background="@drawable/icon_history"
+        android:elevation="35dp"
+        app:layout_constraintBottom_toBottomOf="@id/navigationBar"
+        app:layout_constraintEnd_toEndOf="@id/navigationBar"
+        app:layout_constraintStart_toStartOf="@id/navigationBar"
+        app:layout_constraintTop_toTopOf="@id/navigationBar" />
+
+    <View
+        android:id="@+id/paymentIcon"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="176dp"
+        android:layout_marginTop="18dp"
+        android:layout_marginEnd="175dp"
+        android:layout_marginBottom="46dp"
+        android:background="@drawable/icon_payment"
+        android:elevation="35dp"
+        app:layout_constraintBottom_toBottomOf="@id/navigationBar"
+        app:layout_constraintEnd_toEndOf="@id/navigationBar"
+        app:layout_constraintStart_toStartOf="@id/navigationBar"
+        app:layout_constraintTop_toTopOf="@id/navigationBar" />
+
+    <View
+        android:id="@+id/accountIcon"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="248dp"
+        android:layout_marginTop="18dp"
+        android:layout_marginEnd="103dp"
+        android:layout_marginBottom="46dp"
+        android:background="@drawable/icon_account"
+        android:elevation="35dp"
+        app:layout_constraintBottom_toBottomOf="@id/navigationBar"
+        app:layout_constraintEnd_toEndOf="@id/navigationBar"
+        app:layout_constraintStart_toStartOf="@id/navigationBar"
+        app:layout_constraintTop_toTopOf="@id/navigationBar" />
+
+    <View
+        android:id="@+id/settingsIcon"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="320dp"
+        android:layout_marginTop="18dp"
+        android:layout_marginEnd="31dp"
+        android:layout_marginBottom="46dp"
+        android:background="@drawable/icon_settings"
+        android:elevation="35dp"
+        app:layout_constraintBottom_toBottomOf="@id/navigationBar"
+        app:layout_constraintEnd_toEndOf="@id/navigationBar"
+        app:layout_constraintStart_toStartOf="@id/navigationBar"
+        app:layout_constraintTop_toTopOf="@id/navigationBar" />
+
+    <TextView
+        android:id="@+id/home_bar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="42dp"
+        android:layout_marginTop="22dp"
+        android:layout_marginEnd="321dp"
+        android:layout_marginBottom="60dp"
+        android:elevation="35dp"
+        android:fontFamily="@font/kanit"
+        android:text="Home"
+        android:textSize="12sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@id/navigationBar"
+        app:layout_constraintEnd_toEndOf="@id/navigationBar"
+        app:layout_constraintStart_toStartOf="@id/navigationBar"
+        app:layout_constraintTop_toTopOf="@id/navigationBar"
+
+        />
+
+    <View
+        android:id="@+id/line_blue"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="42dp"
+        android:layout_marginTop="36dp"
+        android:layout_marginEnd="321dp"
+        android:layout_marginBottom="50dp"
+        android:background="@drawable/line_blue"
+        android:elevation="35dp"
+        app:layout_constraintBottom_toBottomOf="@id/navigationBar"
+        app:layout_constraintEnd_toEndOf="@id/navigationBar"
+        app:layout_constraintStart_toStartOf="@id/navigationBar"
+        app:layout_constraintTop_toTopOf="@id/navigationBar" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
