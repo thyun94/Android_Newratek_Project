@@ -1,22 +1,17 @@
 package com.example.project;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.SwitchCompat;
 import androidx.core.content.ContextCompat;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
-import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.view.autofill.AutofillValue;
-import android.widget.CompoundButton;
 import android.widget.TextView;
 
-import com.github.mikephil.charting.animation.Easing;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.data.Entry;
@@ -27,7 +22,6 @@ import com.google.android.material.button.MaterialButtonToggleGroup;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.w3c.dom.Text;
 
 import java.io.BufferedReader;
 import java.io.InputStream;
@@ -36,7 +30,6 @@ import java.math.BigDecimal;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 
@@ -102,11 +95,9 @@ public class MainActivity extends AppCompatActivity {
             startActivity(settingsActivityIntent);
         });
 
-
-        TextViewResult = (TextView) findViewById(R.id.textview_result);
-
         resultArraylist = new ArrayList<>();
 
+        //get data from PHP file uploaded to cloud
         getData task = new getData();
         task.execute("http://13.125.233.133/dbdata.php");
 
@@ -132,13 +123,14 @@ public class MainActivity extends AppCompatActivity {
             result = result.replace("<pre>", "");
             result = result.replace("<br>", "");
 
+            //check the data read from cloud
             progDialog.dismiss();
-            //TextViewResult.setText(result);
             Log.d("mainActivity", "response : " + result);
 
             jsonString = result;
-            showResult();
 
+
+            saveResult();
             updateData();
         }
 
@@ -189,7 +181,9 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private void showResult() {
+
+    //save data into hashmap and arraylist
+    private void saveResult() {
         try {
             JSONObject jsonObject = new JSONObject(jsonString);
             JSONArray jsonArray = jsonObject.getJSONArray(LABEL_JSON);
@@ -224,21 +218,24 @@ public class MainActivity extends AppCompatActivity {
                 resultArraylist.add(hm);
 
             }
-
-
-
         } catch (JSONException e) {
             Log.d("mainActivity", "showResult = ", e);
         }
     }
 
     private void updateData() {
+        //get today's date
         GetDate gdate = new GetDate();
 
+        // Set date to 07-25-2023 for testing purposes
+        gdate.setDay("25");
+        gdate.setMonth("07");
+        gdate.setYear("2023");
 
+        //get user's address and display
+        // Currently only one user/account, so it just gets the first address stored
         TextView myAddress = findViewById(R.id.my_address);
         myAddress.setText(resultArraylist.get(0).get(LABEL_USERADDRESS));
-
 
 
         int thisMonthEnergy=0;
@@ -253,6 +250,12 @@ public class MainActivity extends AppCompatActivity {
         LineChart chart2 = (LineChart) findViewById(R.id.chart2);
         List<Entry> entries2 = new ArrayList<Entry>();
 
+        //Check current month with today's date
+        //get the data corresponding to current month's data
+        //save the results for total price, total energy used
+        //Also save each day's energy used/price into List of entries
+        //to display each day's value on the chart
+        //Finally, save today's energy used / price to display
         for (int i = 0; i < resultArraylist.size(); i++) {
             if (resultArraylist.get(i).get(LABEL_PRICEYEAR).equals(gdate.getYear()) &&
                     resultArraylist.get(i).get(LABEL_PRICEMONTH).equals(gdate.getMonth())) {
@@ -273,6 +276,7 @@ public class MainActivity extends AppCompatActivity {
             }
         }
 
+        //update the corresponding values on the screen
         TextView ThisMonthCurrentPrice = (TextView) findViewById(R.id.currentPriceValueText);
         ThisMonthCurrentPrice.setText("$ " + thisMonthPrice);
 
@@ -283,6 +287,7 @@ public class MainActivity extends AppCompatActivity {
         TodayPrice.setText(todayEnergyUsed + " kWh         $ " + todayPrice);
 
 
+        //draw graph for price
         LineDataSet dataSet = new LineDataSet(entries, "price");
         dataSet.setDrawFilled(true);
         Drawable drawable1 = ContextCompat.getDrawable(this, R.drawable.fade_green);
@@ -307,6 +312,7 @@ public class MainActivity extends AppCompatActivity {
         chart.invalidate();
 
 
+        // draw graph for energy used
         LineDataSet dataSet2 = new LineDataSet(entries2, "energy");
         dataSet2.setDrawFilled(true);
         Drawable drawable = ContextCompat.getDrawable(this, R.drawable.fade_blue);
@@ -336,8 +342,9 @@ public class MainActivity extends AppCompatActivity {
 
         chart2.invalidate();
 
-        MaterialButtonToggleGroup materialButtonToggleGroup = findViewById(R.id.toggleGroup);
 
+        //create button for toggling between graphs
+        MaterialButtonToggleGroup materialButtonToggleGroup = findViewById(R.id.toggleGroup);
         materialButtonToggleGroup.addOnButtonCheckedListener(new MaterialButtonToggleGroup.OnButtonCheckedListener() {
             @Override
             public void onButtonChecked(MaterialButtonToggleGroup group, int checkedId, boolean isChecked) {
