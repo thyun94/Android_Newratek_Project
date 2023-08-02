@@ -1,3 +1,14 @@
 <resources>
     <string name="app_name">Project</string>
+    <string name="my_home">My Home</string>
+    <string name="my_address">my address</string>
+    <string name="energy_used">Energy Used</string>
+    <string name="price">PRICE</string>
+    <string name="today_s_usage">Today\'s Usage</string>
+    <string name="_123_kwh_2_75">123 kWh         $ 2.75</string>
+    <string name="this_month_s_summary">This Month\'s Summary</string>
+    <string name="_123_kwh">123 kWh</string>
+    <string name="current_price">Current Price</string>
+    <string name="_12_34">$ 12.34</string>
+    <string name="home">Home</string>
 </resources>

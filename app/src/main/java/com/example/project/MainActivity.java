@@ -35,23 +35,23 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-    private static String LABEL_JSON = "result";
-    private static String LABEL_USER_USERID = "user.userID";
-    private static String LABEL_USERNAME = "userName";
-    private static String LABEL_USERADDRESS = "userAddress";
-    private static String LABEL_PRICEID = "priceID";
-    private static String LABEL_ENERGYUSED = "energyUsed";
-    private static String LABEL_PRICEAMOUNT = "priceAmount";
-    private static String LABEL_PRICEDAY = "priceDay";
-    private static String LABEL_PRICEMONTH = "priceMonth";
-    private static String LABEL_PRICEYEAR = "priceYear";
-    private static String LABEL_PRICE_USERID = "price.userID";
+    private static final String LABEL_JSON = "result";
+    private static final String LABEL_USER_USERID = "user.userID";
+    private static final String LABEL_USERNAME = "userName";
+    private static final String LABEL_USERADDRESS = "userAddress";
+    private static final String LABEL_PRICEID = "priceID";
+    private static final String LABEL_ENERGYUSED = "energyUsed";
+    private static final String LABEL_PRICEAMOUNT = "priceAmount";
+    private static final String LABEL_PRICEDAY = "priceDay";
+    private static final String LABEL_PRICEMONTH = "priceMonth";
+    private static final String LABEL_PRICEYEAR = "priceYear";
+    private static final String LABEL_PRICE_USERID = "price.userID";
 
-    private TextView TextViewResult;
     ArrayList<HashMap<String, String>> resultArraylist;
     String jsonString;
 
 
+    @SuppressWarnings("deprecation")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -103,6 +103,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    @SuppressWarnings("deprecation")
     private class getData extends AsyncTask<String, Void, String> {
 
         ProgressDialog progDialog;
@@ -244,11 +245,11 @@ public class MainActivity extends AppCompatActivity {
         int todayEnergyUsed = 0;
         BigDecimal todayPrice= new BigDecimal("0.0");
 
-        LineChart chart = (LineChart) findViewById(R.id.chart);
-        List<Entry> entries = new ArrayList<Entry>();
+        LineChart chart = findViewById(R.id.chart);
+        List<Entry> entries = new ArrayList<>();
 
-        LineChart chart2 = (LineChart) findViewById(R.id.chart2);
-        List<Entry> entries2 = new ArrayList<Entry>();
+        LineChart chart2 = findViewById(R.id.chart2);
+        List<Entry> entries2 = new ArrayList<>();
 
         //Check current month with today's date
         //get the data corresponding to current month's data
