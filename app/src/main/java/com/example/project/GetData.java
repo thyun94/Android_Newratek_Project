@@ -13,26 +13,52 @@
 //import java.io.InputStreamReader;
 //import java.net.HttpURLConnection;
 //import java.net.URL;
+//import java.sql.Array;
+//import java.util.ArrayList;
 //import java.util.HashMap;
 //
-//public class GetData extends AsyncTask<String, Void, String>  {
+//
+//
+//
+//@SuppressWarnings("deprecation")
+//public class GetData extends AsyncTask<String, Void, String> {
+//    private static final String LABEL_JSON = "result";
+//    private static final String LABEL_USER_USERID = "user.userID";
+//    private static final String LABEL_USERNAME = "userName";
+//    private static final String LABEL_USERADDRESS = "userAddress";
+//    private static final String LABEL_PRICEID = "priceID";
+//    private static final String LABEL_ENERGYUSED = "energyUsed";
+//    private static final String LABEL_PRICEAMOUNT = "priceAmount";
+//    private static final String LABEL_PRICEDAY = "priceDay";
+//    private static final String LABEL_PRICEMONTH = "priceMonth";
+//    private static final String LABEL_PRICEYEAR = "priceYear";
+//    private static final String LABEL_PRICE_USERID = "price.userID";
+//
+//    ArrayList<HashMap<String, String>> resultArraylist = new ArrayList<>();
+//    String jsonString;
+//
 //    ProgressDialog progDialog;
 //    String errorString = "error";
+//
+//
+//    public GetData() {
+//    }
+//
 //
 //    @Override
 //    protected void onPostExecute(String result) {
 //        super.onPostExecute(result);
 //
-//        progDialog.dismiss();
-//        TextViewResult.setText(result);
+//        result = result.replace("<pre>", "");
+//        result = result.replace("<br>", "");
 //
-//        if (result==null) {
-//            TextViewResult.setText(errorString);
-//        }
-//        else {
-//            jsonString = result;
-//            showResult();
-//        }
+//        //check the data read from cloud
+////        progDialog.dismiss();
+//        Log.d("mainActivity", "response : " + result);
+//
+//        jsonString = result;
+//        saveResult();
+//
 //    }
 //
 //    @Override
@@ -53,8 +79,7 @@
 //            InputStream inputStream;
 //            if (responseStatusCode == HttpURLConnection.HTTP_OK) {
 //                inputStream = httpURLConnection.getInputStream();
-//            }
-//            else {
+//            } else {
 //                inputStream = httpURLConnection.getErrorStream();
 //            }
 //
@@ -65,7 +90,7 @@
 //            StringBuilder sb = new StringBuilder();
 //            String line;
 //
-//            while((line = bufferedReader.readLine()) != null) {
+//            while ((line = bufferedReader.readLine()) != null) {
 //                sb.append(line);
 //            }
 //
@@ -81,7 +106,9 @@
 //        return null;
 //    }
 //
-//    private void showResult() {
+//
+//    //save data into hashmap and arraylist
+//    private void saveResult() {
 //        try {
 //            JSONObject jsonObject = new JSONObject(jsonString);
 //            JSONArray jsonArray = jsonObject.getJSONArray(LABEL_JSON);
@@ -93,6 +120,7 @@
 //                String username = item.getString(LABEL_USERNAME);
 //                String useraddress = item.getString(LABEL_USERADDRESS);
 //                String priceid = item.getString(LABEL_PRICEID);
+//                String energyused = item.getString(LABEL_ENERGYUSED);
 //                String priceamount = item.getString(LABEL_PRICEAMOUNT);
 //                String priceday = item.getString(LABEL_PRICEDAY);
 //                String pricemonth = item.getString(LABEL_PRICEMONTH);
@@ -105,6 +133,7 @@
 //                hm.put(LABEL_USERNAME, username);
 //                hm.put(LABEL_USERADDRESS, useraddress);
 //                hm.put(LABEL_PRICEID, priceid);
+//                hm.put(LABEL_ENERGYUSED, energyused);
 //                hm.put(LABEL_PRICEAMOUNT, priceamount);
 //                hm.put(LABEL_PRICEDAY, priceday);
 //                hm.put(LABEL_PRICEMONTH, pricemonth);
@@ -117,5 +146,9 @@
 //        } catch (JSONException e) {
 //            Log.d("mainActivity", "showResult = ", e);
 //        }
+//    }
+//
+//    public ArrayList<HashMap<String, String>> getResultArraylist() {
+//        return resultArraylist;
 //    }
 //}
