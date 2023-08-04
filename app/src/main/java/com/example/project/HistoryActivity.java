@@ -12,8 +12,7 @@ import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
 
-import com.github.mikephil.charting.charts.LineChart;
-import com.github.mikephil.charting.data.Entry;
+import com.google.android.material.button.MaterialButtonToggleGroup;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -22,13 +21,11 @@ import org.json.JSONObject;
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.math.BigDecimal;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
-import java.util.List;
 
 public class HistoryActivity extends AppCompatActivity {
 
@@ -49,7 +46,11 @@ public class HistoryActivity extends AppCompatActivity {
 
     private RecyclerView mRecyclerView;
     private RecyclerAdapter mRecyclerAdapter;
-    private ArrayList<RecyclerItem> itemList;
+    private ArrayList<RecyclerItem> itemList_all;
+
+    private ArrayList<RecyclerItem> itemList_energy;
+
+    private ArrayList<RecyclerItem> itemList_price;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -232,27 +233,29 @@ public class HistoryActivity extends AppCompatActivity {
         gdate.setMonth("07");
         gdate.setYear("2023");
 
-        itemList = new ArrayList<>();
+        itemList_all = new ArrayList<>();
+        itemList_energy = new ArrayList<>();
+        itemList_price = new ArrayList<>();
 
         for (int i = 0; i < resultArraylist.size(); i++) {
             if (resultArraylist.get(i).get(LABEL_PRICEYEAR).equals(gdate.getYear()) &&
                     resultArraylist.get(i).get(LABEL_PRICEMONTH).equals(gdate.getMonth())) {
 
-                itemList.add(new RecyclerItem(R.drawable.icon_elec_circle_blue,
+                itemList_all.add(new RecyclerItem(R.drawable.icon_elec_circle_blue,
+                        "Energy Used \n" + resultArraylist.get(i).get(LABEL_PRICEMONTH) + "/" + resultArraylist.get(i).get(LABEL_PRICEDAY),
+                        "+ " + resultArraylist.get(i).get(LABEL_ENERGYUSED) + " kWh"));
+                itemList_energy.add(new RecyclerItem(R.drawable.icon_elec_circle_blue,
                         "Energy Used \n" + resultArraylist.get(i).get(LABEL_PRICEMONTH) + "/" + resultArraylist.get(i).get(LABEL_PRICEDAY),
                         "+ " + resultArraylist.get(i).get(LABEL_ENERGYUSED) + " kWh"));
 
-                Log.d("history", "rid = " + itemList.get(i).getResourceId());
-
-                itemList.add(new RecyclerItem(R.drawable.icon_dollarsign_circle_yellow,
+                itemList_all.add(new RecyclerItem(R.drawable.icon_dollarsign_circle_yellow,
                         "Price \n" + resultArraylist.get(i).get(LABEL_PRICEMONTH) + "/" + resultArraylist.get(i).get(LABEL_PRICEDAY),
                         "- $ " + resultArraylist.get(i).get(LABEL_PRICEAMOUNT)));
-                Log.d("history", "rid2 = " + itemList.get(i).getResourceId());
+                itemList_price.add(new RecyclerItem(R.drawable.icon_dollarsign_circle_yellow,
+                        "Price \n" + resultArraylist.get(i).get(LABEL_PRICEMONTH) + "/" + resultArraylist.get(i).get(LABEL_PRICEDAY),
+                        "- $ " + resultArraylist.get(i).get(LABEL_PRICEAMOUNT)));
             }
         }
-
-//        rid = 2131230901
-//        rid = 2131230902
 
         mRecyclerView = (RecyclerView) findViewById(R.id.recyclerView);
 
@@ -262,14 +265,38 @@ public class HistoryActivity extends AppCompatActivity {
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this, RecyclerView.VERTICAL,false));
 
-        Collections.reverse(itemList);
-        mRecyclerAdapter.setItemList(itemList);
+        Collections.reverse(itemList_all);
+        Collections.reverse(itemList_energy);
+        Collections.reverse(itemList_price);
+
+        mRecyclerAdapter.setItemList(itemList_all);
 
         //set fixed max height when scrolling
         DisplayMetrics displaymetrics = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(displaymetrics);
         int a = (displaymetrics.heightPixels * 60) / 100;
         mRecyclerView.getLayoutParams().height = a;
+
+
+
+        //create button for toggling between graphs
+        MaterialButtonToggleGroup materialButtonToggleGroup = findViewById(R.id.toggleGroup);
+        materialButtonToggleGroup.addOnButtonCheckedListener(new MaterialButtonToggleGroup.OnButtonCheckedListener() {
+            @Override
+            public void onButtonChecked(MaterialButtonToggleGroup group, int checkedId, boolean isChecked) {
+                if(isChecked) {
+                    if (checkedId == R.id.btn_all) {
+                        mRecyclerAdapter.setItemList(itemList_all);
+                    }
+                    else if (checkedId == R.id.btn_energy_used) {
+                        mRecyclerAdapter.setItemList(itemList_energy);
+                    }
+                    else if (checkedId == R.id.btn_price) {
+                        mRecyclerAdapter.setItemList(itemList_price);
+                    }
+                }
+            }
+        });
 
     }
 
