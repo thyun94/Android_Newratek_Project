@@ -295,6 +295,9 @@ public class MainActivity extends AppCompatActivity {
         dataSet.setFillDrawable(drawable1);
 
         dataSet.setMode(LineDataSet.Mode.CUBIC_BEZIER);
+        dataSet.setDrawValues(false);
+        dataSet.setDrawCircles(false);
+
         LineData data = new LineData(dataSet);
 
 
@@ -309,6 +312,8 @@ public class MainActivity extends AppCompatActivity {
         chart.getXAxis().setPosition(XAxis.XAxisPosition.BOTTOM);
         chart.animateXY(500,500);
         chart.getLegend().setEnabled(false);
+        chart.getDescription().setText("$  / Day");
+        chart.getDescription().setPosition(120,585);
 
         chart.invalidate();
 

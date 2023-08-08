@@ -279,7 +279,7 @@ public class HistoryActivity extends AppCompatActivity {
 
 
 
-        //create button for toggling between graphs
+        //create button for toggling between list
         MaterialButtonToggleGroup materialButtonToggleGroup = findViewById(R.id.toggleGroup);
         materialButtonToggleGroup.addOnButtonCheckedListener(new MaterialButtonToggleGroup.OnButtonCheckedListener() {
             @Override
