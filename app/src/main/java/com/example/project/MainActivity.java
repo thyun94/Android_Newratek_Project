@@ -99,6 +99,10 @@ public class MainActivity extends AppCompatActivity {
 
         //get data from PHP file uploaded to cloud
         getData task = new getData();
+
+        // php file stored in cloud can be accessed from http://13.125.233.133/dbdata.php
+        // currently updating data can only be available from directly connecting to the EC2 server from AWS
+
         task.execute("http://13.125.233.133/dbdata.php");
 
     }
@@ -184,6 +188,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     //save data into hashmap and arraylist
+    // all data read from PHP file is saved into resultArrayList
     private void saveResult() {
         try {
             JSONObject jsonObject = new JSONObject(jsonString);
@@ -224,12 +229,14 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    //All updates on the screen with data is operated in this method
+    //If it is not called from this method, it will process before reading data from the server
     private void updateData() {
         //get today's date
         GetDate gdate = new GetDate();
 
-        // Set date to 07-25-2023 for testing purposes
-        gdate.setDay("25");
+        // Set date to 07-26-2023 for testing purposes
+        gdate.setDay("26");
         gdate.setMonth("07");
         gdate.setYear("2023");
 

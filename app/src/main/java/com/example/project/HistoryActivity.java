@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
+import android.widget.CalendarView;
 
 import com.google.android.material.button.MaterialButtonToggleGroup;
 
@@ -24,6 +25,7 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collections;
 import java.util.HashMap;
 
@@ -229,9 +231,19 @@ public class HistoryActivity extends AppCompatActivity {
         GetDate gdate = new GetDate();
 
         // Set date to 07-25-2023 for testing purposes
-        gdate.setDay("25");
+        gdate.setDay("26");
         gdate.setMonth("07");
         gdate.setYear("2023");
+
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(Calendar.YEAR, Integer.parseInt(gdate.getYear()));
+        calendar.set(Calendar.MONTH, gdate.getIntMonth() - 1);
+        calendar.set(Calendar.DAY_OF_MONTH, gdate.getIntDay());
+
+        long milliTime = calendar.getTimeInMillis();
+
+        CalendarView calendarView = findViewById(R.id.calendarView);
+        calendarView.setDate(milliTime,true,true);
 
         itemList_all = new ArrayList<>();
         itemList_energy = new ArrayList<>();

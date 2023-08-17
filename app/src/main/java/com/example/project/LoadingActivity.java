@@ -18,6 +18,7 @@ public class LoadingActivity extends AppCompatActivity {
             public void run() {
                 Intent intent = new Intent(LoadingActivity.this, MainActivity.class);
                 startActivity(intent);
+                overridePendingTransition(R.drawable.fade_in, R.drawable.fade_out);
                 finish();
             }
         }, 2500);

@@ -35,6 +35,22 @@ public class GetDate {
         return day;
     }
 
+    public int getIntDay() {
+        if (this.day.startsWith("0")) {
+            String newDay =  this.day.replace("0", "");
+            return Integer.parseInt(newDay);
+        }
+        return Integer.parseInt(this.day);
+    }
+
+    public int getIntMonth() {
+        if (this.month.startsWith("0")) {
+            String newMonth =  this.month.replace("0", "");
+            return Integer.parseInt(newMonth);
+        }
+        return Integer.parseInt(this.month);
+    }
+
     public void setDay(String day) {
         this.day = day;
     }
