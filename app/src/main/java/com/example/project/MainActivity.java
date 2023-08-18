@@ -95,6 +95,7 @@ public class MainActivity extends AppCompatActivity {
             startActivity(settingsActivityIntent);
         });
 
+        //array list to store all data read from server
         resultArraylist = new ArrayList<>();
 
         //get data from PHP file uploaded to cloud
@@ -135,6 +136,7 @@ public class MainActivity extends AppCompatActivity {
             jsonString = result;
 
 
+            //all methods are performed here
             saveResult();
             updateData();
         }

@@ -230,7 +230,7 @@ public class HistoryActivity extends AppCompatActivity {
         //get today's date
         GetDate gdate = new GetDate();
 
-        // Set date to 07-25-2023 for testing purposes
+        // Set date to 07-26-2023 for testing purposes
         gdate.setDay("26");
         gdate.setMonth("07");
         gdate.setYear("2023");
